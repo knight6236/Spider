@@ -37,17 +37,18 @@ public class ReptileService {
 
 		DecimalFormat df = new DecimalFormat("000");
 		try {
-			for (int i = 1; i < 1000; i++) {
+			int i = 1;
+			while (true) {
 				String num = df.format(i);
 				// 头像
-				url = new URL("http://file.fgowiki.591mogu.com/fgo/head/" + num + ".jpg");
+				// url = new URL("http://file.fgowiki.591mogu.com/fgo/head/" +
+				// num + ".jpg");
 				// 礼装
-				// url = new URL("http://fgowiki.com/fgo/equip/" + num +
-				// ".jpg");
+				url = new URL("http://fgowiki.com/fgo/equip/" + num + ".jpg");
 				urlconn = url.openConnection();
 				is = urlconn.getInputStream();
-				os = new FileOutputStream("E:/my/FGO/head/" + num + ".jpg");
-				// os = new FileOutputStream("E:/my/FGO/craft/" + num + ".jpg");
+				// os = new FileOutputStream("E:/my/FGO/head/" + num + ".jpg");
+				os = new FileOutputStream("E:/my/FGO/craft/" + num + ".jpg");
 				while (true) {
 					temp = is.read(buffer, 0, buffer.length);
 					if (temp == -1) {
@@ -56,15 +57,17 @@ public class ReptileService {
 					os.write(buffer, 0, temp);
 				}
 				System.out.println(num + ".jpg 获取成功！");
+				i++;
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("路径" + e.getMessage() + "不存在");
 		} finally {
 			try {
 				is.close();
 				os.close();
 			} catch (IOException e) {
-				e.printStackTrace();
+				System.out.println(e.getMessage());
+				return;
 			}
 		}
 	}
