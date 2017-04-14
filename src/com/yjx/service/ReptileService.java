@@ -20,7 +20,7 @@ public class ReptileService {
 	public static void main(String[] args) {
 		ReptileService rs = new ReptileService();
 
-		// 在你发起Http请求之前设置一下属性
+		// 在发起Http请求之前设置一下代理属性
 		System.setProperty("http.proxyHost", "proxy.cmcc");
 		System.setProperty("http.proxyPort", "8080");
 
@@ -41,6 +41,7 @@ public class ReptileService {
 				String num = df.format(i);
 				// 头像
 				url = new URL("http://file.fgowiki.591mogu.com/fgo/head/" + num + ".jpg");
+				// 礼装
 				// url = new URL("http://fgowiki.com/fgo/equip/" + num +
 				// ".jpg");
 				urlconn = url.openConnection();
@@ -78,7 +79,7 @@ public class ReptileService {
 		try {
 			url = new URL("http://fgowiki.com/");
 			urlconn = url.openConnection();
-			pw = new PrintWriter(new FileWriter("E:/my/FGO/url.txt"), true);// 这里我们把收集到的链接存储在了E盘底下的一个叫做url的txt文件中
+			pw = new PrintWriter(new FileWriter("E:/my/FGO/url.txt"), true);
 			br = new BufferedReader(new InputStreamReader(urlconn.getInputStream()));
 			String buf = null;
 			while ((buf = br.readLine()) != null) {
